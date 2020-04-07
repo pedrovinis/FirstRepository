@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Switch Case         
+
+        var pos = 1
+        var msg
+
+        //Switch para verificação de ganho de medalha
+        switch(pos){
+            case 1: 
+                msg = "Primeiro lugar, medalha de ouro!"
+                break
+            case 2: 
+                msg = "Segundo lugar, medalha de prata!"
+                break
+            case 3:
+                msg = "Terceiro lugar, medalha de bronze"
+                break
+            default:
+                msg = "Você não ganhou medalha!"
+        }   
+        
+        //Switch para verificação se foi ou não ao pódio
+        switch(pos){
+            case 1:
+            case 2:
+            case 3:
+                msg = msg + "</br> Foi ao pódio!"
+                break;
+            default:
+                msg += "</br> Não foi ao pódio!"
+        }
+
+        document.write(msg)
+
+    </script>
+</body>
+</html>
