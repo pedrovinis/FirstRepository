@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Array/Vetor
+
+      /*  Um array pode ser criado dessa forma também:
+        var cor = new Array() 
+        cor1 = "branco"
+        cor2 = "preto"
+      */
+        
+        var cor = []
+        
+        //Comando push é utilizado para adicionar elemento no final do array
+        cor.push("branco") // [0]
+        cor.push("preto")  // [1]
+        cor[2] = "amarelo"
+
+        document.write(cor[0] + "</br>")
+        document.write(cor[1] + "</br>")
+        document.write(cor[2] + "</br>")
+
+
+        var mochila = []
+        var itens = ["Faca","Bússola","Corda","Luvas","Chave"]
+
+        mochila.push(itens[0])
+        mochila.push(itens[1])
+        mochila.push(itens[2])
+
+        document.write("</br>Mochila:" + mochila)
+        
+    </script>
+</body>
+</html>
