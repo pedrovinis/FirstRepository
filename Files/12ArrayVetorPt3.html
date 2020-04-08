@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Array/Vetor pt 3
+
+        var mochila = []
+        var itens = ["Faca","Bússola","Corda","Luvas","Chave"]
+
+        mochila.push(itens[0])
+        mochila.push(itens[1])
+        mochila.push(itens[2])
+        mochila.push(itens[3])
+        mochila.push(itens[4])
+        
+        var pos = (mochila.indexOf("Corda")) //O comando IndexOf busca pela posição do item no array, nesse caso = [2]
+        
+        if(pos >=0 && pos <=4){
+            document.write("O item " + itens[pos] + " está na mochila</br></br>")
+        }
+        else{
+            document.write("O item buscado não está na mochila</br></br>")
+        }
+
+        document.write("Mochila:</br>"+ mochila)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Array/Vetor pt 4
+
+        var impares = [3,5,1,9,7], pares = [2,8,0,6,4]
+
+        impares.reverse() //O comando "reverse" organiza os elementos em ordem descrescente e/ou alfabética inversa
+        impares.sort() //O comando "sort" organiza os elementos em ordem crescente e/ou alfabética
+        document.write(impares + "</br>")
+
+        var sep = pares.join("-") //O comando "join" é utilizado para separar os elementos de um array de acordo com sua escolha
+        document.write(sep + "</br></br>")
+
+        var num = impares.concat(pares);
+        var qtd = num.length //O comando "length" retorna a quantidade de elementos do array
+        num.sort()
+
+        document.write("Quantidade de números: " + qtd + "<br>Números: " + num)
+
+    </script>
+</body>
+</html>
