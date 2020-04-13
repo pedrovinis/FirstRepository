@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Tratamento de erros > Try/Catch/Finally
+
+        let num
+
+        try{
+            num = prompt("Digite um número até 10")
+
+            if(num>10){
+                throw new Error("Valor maior que 10 <br>")
+            }
+
+            document.write(num+"<br>")
+
+        }catch(e){
+            document.write("Erro: " +e.message)
+            console.log("Error" + e.message)
+        }finally{
+            document.write("<br>Obrigado pelo acesso")
+        }
+    </script>
+</body>
+</html>
