@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p id="texto">Página inicial</p>
+
+    <input type="text" id="cxtexto" value="Text Here">
+
+    <script>
+        // InnerHtml 
+
+        var cxt = document.getElementById("cxtexto")
+        cxt.value="Valor"
+
+        var ptxt = document.getElementById("texto").innerHTML
+        document.write("<br>"+ ptxt +"<br>")
+
+
+    </script>
+</body>
+</html>
