@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Página inicial</p>
+    <p>Bem-Vindo</p>
+    <p>Comando getElementByTagName</p>
+    <div>Contato</div>
+    <p>Telefone</p>
+    <p>Email</p>
+
+    <hr/>
+
+    <script>
+        //getElementByTagName
+
+        var tagsP = document.getElementsByTagName("p")
+
+        for(var i=0;i<tagsP.length;i++){
+        tagsP[i].style.color="#f00"
+        }
+
+        document.write(tagsP[3].innerHTML + "<br>")
+
+        var p = document.getElementsByTagName("p")[4]
+        document.write(p.innerHTML) 
+
+
+        var all = document.getElementsByTagName("*") //Captura todos elementos da página
+        all[9].style.color="green"
+        all[9].style.fontSize="50px"
+
+    </script>
+</body>
+</html>
