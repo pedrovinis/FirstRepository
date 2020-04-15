@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            display: block;
+        }
+        input{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <form name="f1" id="f1" action="#" method="POST">
+        <label>Nome</label>
+        <input type="text" name="f1Nome" id="f1nome">
+        <label>Senha</label>
+        <input type="password" name="f1Senha">
+        <input type="submit" name="btEnviar" value="Enviar">
+    </form>
+    <form name="f2" id="f2" action="#" method="POST">
+        <label>Nome</label>
+        <input type="text" name="f2Nome" id="f2nome">
+        <label>Senha</label>
+        <input type="password" name="f2Senha">
+        <input type="submit" name="btEnviar" value="Enviar">
+    </form>
+
+    <hr/>
+
+    <script>
+        //Manipulando formulários
+
+        //var fm1 = document.forms.item(0).id
+        //document.write(fm1 +"<br>")
+
+        var fm = document.forms.length
+        document.write(fm +"<br>")   
+
+        //var fm1 = document.forms[0]
+        var fm1 = document.forms.namedItem("f1")
+        document.write(fm1.id +"<br><br>")
+        document.write(fm1.innerHTML)
+        
+    </script>
+</body>
+</html>

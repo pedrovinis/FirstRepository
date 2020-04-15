@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            display: block;
+        }
+        input{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <form name="f1" id="f1" action="#" method="POST">
+        <label>Nome</label>
+        <input type="text" name="f1Nome" id="f1nome" value="JScript">
+        <label>Senha</label>
+        <input type="password" name="f1Senha" value="JScript">
+        <input type="submit" name="btEnviar" value="Enviar">
+    </form>
+    <br>
+    <form name="f1" id="f1" action="#" method="POST">
+        <label>Nome</label>
+        <input type="text" name="f1Nome" id="f1nome" value="JScript">
+        <label>Senha</label>
+        <input type="password" name="f1Senha" value="JScript">
+        <input type="submit" name="btEnviar" value="Enviar">
+    </form>
+
+    <hr/>
+
+    <script>
+        //Manipulando formulários
+
+        var fm1 = document.forms[0]
+        var el = fm1.elements
+        el[0].style.backgroundColor="red"  //O primeiro elemento [0](no Caso o campo nome) ficará vermelho nesse caso.
+        el[1].style.backgroundColor="green"
+
+        /*var f1 = document.forms
+        f1[0].style.backgroundColor="red" */  //Toda parte do primeiro [0] formulário ficará vermelha
+
+        document.write(document.getElementById("f1").elements[0].value) 
+
+    </script>
+</body>
+</html>
