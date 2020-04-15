@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .titulo{
+            color:"gray";
+            font-size:20px;
+            text-decoration: underline;
+        }
+        div{
+            border: 1px solid #000;
+            padding: 10px;
+            display: inline-block;
+        }
+        a{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="titulo">querySelectorAll</h1>
+    <p>O querySelectorAll() é um método que retorna os elementos do documento que corresponde a uma classe CSS ou a uma tag específica.</p>
+    <h2 class="titulo">JavaScript</h2>
+    <p class="titulo">GitHub</p>
+    <p>Arquivos</p>
+    <div>
+        <h3>Titulo da div</h3>
+        <p>Este texto está dentro de uma div.</p>
+        <p>Esse também.</p>
+    </div>
+    <a href="https://github.com/pedrovinis/JavaScript" target="_blank">GitHub</a>
+    <a href="https://github.com/pedrovinis/JavaScript/tree/master/Files" target="_blank">Files</a>
+
+    <hr/>
+
+    <script>
+        //querySelectorAll pt 2
+
+        var elementos = document.querySelectorAll("div > p")  //Essa sintaxe é usada para retornar todos paragrafos dentro de uma determinada <div>, por exemplo. Caso for usado o "*" indica que todos elementos devem ser selecionados.
+        for(var c=0; c < elementos.length; c++){
+            document.write(elementos[c].innerHTML+"<br>")
+        }
+
+    </script>
+</body>
+</html>
