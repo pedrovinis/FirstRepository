@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Date
+
+        document.write(Date() +"<br><br>")
+
+        var dt = new Date() 
+        
+        var ndt = new Date() //Parametros: Ano,Mês,Dia,Hora,Min,Seg,Mil
+
+        ndt.setDate(dt.getDate()+0)   //Manipula os dias
+        ndt.setMonth(dt.getMonth()+0)   //Manuypula os meses
+        ndt.setFullYear(dt.getFullYear()+0) //Manipula os anos
+
+        var diasemana = ndt.getDay()  //Os valores são dados em arrays
+        var dia = ndt.getDate() 
+        var mes = ndt.getMonth()   //Os valores são dados em arrays
+        var ano = ndt.getFullYear()
+
+        var horas = ndt.getHours()
+        var minutos = ndt.getMinutes()
+        var segundos = ndt.getSeconds()
+        
+        var meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+        var diassemana = ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sabádo"]
+
+        document.write(diassemana[diasemana]+" - "+dia+"/"+meses[mes]+"/"+ano+"<br>"+horas+":"+minutos+":"+segundos) 
+
+    </script>
+</body>
+</html>
