@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Escopo de variáveis
+
+        var nomeCor = "Vermelho"    //Essa variável pode ser acessada "em qualquer lugar"
+
+        function cor(){
+            var nomeCor = "Azul"    //Essa variável so pode ser acessada pela função
+            document.write(this.nomeCor +"<br>"+nomeCor)    //O comando this. pega a variável global
+        }
+
+        cor(); 
+
+    </script>
+</body>
+</html>

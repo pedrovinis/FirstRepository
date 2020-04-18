@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Functions
+
+        function writeJS(){
+            document.write("JavaScript <br>")
+        }
+
+        function write(txt){
+            document.write(txt +"<br>")
+        }
+
+        function soma(n1,n2){
+            var s = n1+n2
+            document.write(s +"<br>")
+        }
+        function rsoma(n1,n2){
+            return n1+n2
+        }
+
+        writeJS()
+        write("GitHub JavaScript")
+
+        soma(10,5)
+        write(rsoma(10,10))
+        write("<br><hr/>")
+
+
+        var notas = new Array(8,10,6,7)
+
+        function media(nums){
+            var tam = nums.length
+            var soma = 0
+            for(i=0;i<tam;i++){
+                soma += nums[i]
+            }
+            return Math.round(soma/tam)
+        }
+
+        write(media(notas))
+    </script>
+</body>
+</html>
