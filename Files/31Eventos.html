@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script>
+        function start(){
+            var data = new Date();
+            var hora = data.getHours()
+            var txt = ""
+            if(hora<12){
+                txt = "Bom dia, são " + hora + " horas."
+            } else if(hora<18){
+                txt = "Boa tarde, são " + hora + " horas."
+            }
+            else{
+                txt = "Boa noite, são " + hora + " horas."
+            }
+            alert(txt)
+        }
+    </script>
+</head>
+
+<body onload="start()">
+    <div id="div1" onmousemove="mudaCor(this,'black')" onmouseleave="mudaCor(this,'white')"></div>
+    <br>
+    <button onmousemove="mudaCor(document.getElementById('div1'),'green')" onclick="mudaPos(document.getElementById('div1'))">Click Here</button>
+
+
+    <script>
+        //Eventos
+
+        function mudaCor(obj,color){
+            obj.style.backgroundColor=color
+        }
+        function mudaPos(obj){
+            obj.style.position="absolute"
+            obj.style.left=Math.random()*500+"px"
+            obj.style.top=Math.random()*500+"px"
+        }
+
+    </script>
+</body>
+</html>
