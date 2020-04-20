@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <br>
+    <button id="bt1">Iniciar</button>
+    <button id="bt2">Parar</button>
+
+    <script>
+        //SetTimeOout & SetInterval
+
+        bt1 = document.getElementById('bt1')
+        bt2 = document.getElementById('bt2')
+
+        function mudaCor(){
+            var obj = document.getElementById('div1')
+            var r = Math.floor(Math.random()*255)
+            var g = Math.floor(Math.random()*255)
+            var b = Math.floor(Math.random()*255)
+
+            obj.style.backgroundColor="rgb("+r+","+g+","+b+")"
+            console.log("rgb: "+r+","+g+","+b)
+        }
+
+        setTimeout(mudaCor,1000) //Após o intervalo de 1 segundo, chamará uma única vez a função "mudaCor"
+
+        var tmp
+        function start(){
+            tmp = setInterval(mudaCor,1000) //A cada um segundo, a função "mudaCor" será executada continuamente
+        }
+
+        function stop(){
+            clearInterval(tmp)  //Parará a execução do "setInterval" para a váriavel "tmp"
+        }
+
+        bt1.addEventListener("click",start)
+        bt2.addEventListener("click",stop)
+        
+    </script>
+</body>
+</html>
