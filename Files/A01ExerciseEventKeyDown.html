@@ -20,11 +20,18 @@
     <div id="div1"></div>
 
     <script>
-            var x = 0
-            var y = 0
+        var x = 0
+        var y = 0
 
         var player = document.getElementById('div1')
+        
         player.addEventListener("click",start)
+
+        function start(){
+            alert("Event keydown ativado")
+            player.style.backgroundColor="red"
+            document.addEventListener("keydown",move)
+        }
 
         function move(){
             key = event.keyCode
@@ -46,19 +53,14 @@
                 y+=10
                 player.style.top=y+"px"
                 break
-                case 13:
+                case 13:    //Tecla Enter
                 document.removeEventListener("keydown",move)
                 player.style.backgroundColor="white"
                 alert("Event keydown desativado")
                 break
             }
         }
-
-        function start(){
-            alert("Event keydown ativado")
-            player.style.backgroundColor="red"
-            document.addEventListener("keydown",move)
-        }
+        
     </script>
 </body>
 </html>

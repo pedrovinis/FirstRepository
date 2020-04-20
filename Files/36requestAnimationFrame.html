@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #player{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-color: blue;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="player"></div>
+    <button id="bt1">Start</button>
+    <button id="bt2">Stop</button>
+
+    <script>
+
+        var player 
+        var spd
+        var dx
+        var dy
+        var px
+        var py
+        var frame
+        var bt1
+        var bt2
+
+        function startGame() {
+            player = document.getElementById("player")
+            bt1 = document.getElementById("bt1")
+            bt2 = document.getElementById("bt2")
+            spd = 7
+            dx = 1
+            dy = 0
+            px = 100
+            py = 0    
+
+            player.style.left=px+"px"
+            player.style.top=py+"px"
+
+            bt1.addEventListener("click",btStart)
+            player.addEventListener("click",btStart)
+
+        } 
+
+        startGame()
+
+        function btStart(){
+            player.removeEventListener("click",btStart)
+            bt1.removeEventListener("click",btStart)
+
+            player.addEventListener("click",btStop)
+            bt2.addEventListener("click",btStop)
+
+            game()
+            console.log("Frame Iniciado")
+        }
+        function btStop(){
+            player.removeEventListener("click",btStop)
+            bt2.removeEventListener("click",btStop)
+            
+            player.addEventListener("click",btStart)
+            bt1.addEventListener("click",btStart)
+
+            cancelAnimationFrame(frame)
+            console.log("Frame Interrompido")
+        }
+
+        function game() {
+            px+=dx*spd
+            py+=dy*spd
+
+            player.style.left=px+"px"
+            player.style.top=py+"px"
+
+            if(px>1000){
+                dx=-1
+            }
+            if(px==100){
+                dx= 1
+            }
+            frame = requestAnimationFrame(game)
+        }
+        
+    </script>
+</body>
+</html>
