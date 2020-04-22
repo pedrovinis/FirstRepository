@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #slider{
+            width: 1000px;
+            height: 300px;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        var slider
+        var imgs = []
+        var imgnow
+        var imgmax
+
+        function preLoad(){     
+            for(i=0;i<2;i++){
+            imgs[i] = new Image()
+            imgs[i].src="imgs/39/img"+i+".png"
+            }
+        }
+
+        function loadImg(img){
+            slider.style.backgroundImage="url('"+imgs[img].src+"')"
+        }
+
+        function tradeImg(){
+            if(imgnow==imgmax){
+                imgnow = 0
+            }
+            loadImg(imgnow)
+            imgnow++
+        }
+
+        function start(){
+            preLoad() //Load no inicio para evitar demora de renderizações
+            imgnow= 0
+            imgmax = imgs.length
+            slider = document.getElementById("slider")
+            loadImg(imgnow)
+            setInterval(tradeImg,1000)
+        }
+        addEventListener("load",start)
+
+    </script>
+</head>
+<body>
+    <div id="slider"></div>
+
+    <script>
+
+    </script>
+</body>
+</html>

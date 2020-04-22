@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #quad{
+            border: 1px solid #000;
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="quad"></div>
+    <script>
+        //Recursividade, pode ser usada para substituir estruturas de Loop
+
+        var obj = document.getElementById("quad")
+        var angle = 0
+        var frame
+
+        function rotate(){
+            obj.style.transform="rotate("+angle+"deg)"
+            angle++
+            if(angle>360){
+                angle = 0
+            }
+            frame = requestAnimationFrame(rotate)
+        }
+        rotate()
+
+        function contador(min,max){
+            document.write(min+"<br>")
+            if(min<max){
+                contador(min+1,max)
+            }
+        }
+
+        contador(0,10)
+
+        function fatorial(n){
+            if(n==1){
+                return 1 
+            }
+            return n*fatorial(n-1)
+        }
+        document.write("<hr/><br>"+fatorial(5))
+
+    
+    </script>
+</body>
+</html>

@@ -9,7 +9,7 @@
             position: absolute;
             top: 0px;
             left: 0px;
-            background-color: blue;
+            background-color: red;
             width: 50px;
             height: 50px;
         }
@@ -36,7 +36,7 @@
             player = document.getElementById("player")
             bt1 = document.getElementById("bt1")
             bt2 = document.getElementById("bt2")
-            spd = 7
+            spd = 2
             dx = 1
             dy = 0
             px = 100
@@ -52,6 +52,7 @@
 
         startGame()
 
+
         function btStart(){
             player.removeEventListener("click",btStart)
             bt1.removeEventListener("click",btStart)
@@ -59,16 +60,18 @@
             player.addEventListener("click",btStop)
             bt2.addEventListener("click",btStop)
 
+            player.style.backgroundColor="blue"
             game()
             console.log("Frame Iniciado")
         }
         function btStop(){
             player.removeEventListener("click",btStop)
             bt2.removeEventListener("click",btStop)
-            
+
             player.addEventListener("click",btStart)
             bt1.addEventListener("click",btStart)
 
+            player.style.backgroundColor="red"
             cancelAnimationFrame(frame)
             console.log("Frame Interrompido")
         }

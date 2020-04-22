@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        table,td,tr,th{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table id="tb">
+    <tr>
+        <th>Alunos</th><th>Nota 1</th><th>Nota 2</th><th>Resultado</th>
+    </tr>
+    <tr>
+        <td>A1</td><td>35</td><td>48</td><td id="r1"></td>
+    </tr>
+    <tr>
+        <td>A2</td><td>70</td><td>85</td><td id="r2"></td>
+    </tr>
+    <tr>
+        <td>A3</td><td>48</td><td>48</td><td id="r3"></td>
+    </tr>
+    <tr>
+        <td>A4</td><td>10</td><td>50</td><td id="r4"></td>
+    </tr>
+    </table>
+
+    <script>
+        //TR COLUNAS            TD LINHAS
+        var r = [document.getElementById('r1'),document.getElementById('r2'),document.getElementById('r3'),document.getElementById('r4')]
+        var table = document.getElementById('tb')
+        var nota 
+
+        for(i=1;i<table.rows.length;i++){   //ROW = LINHA
+            nota = (parseInt(table.rows[i].cells[1].innerHTML) + parseInt(table.rows[i].cells[2].innerHTML))/2  //Cells = referente ao número do elemento da linha
+            table.rows[i].cells[3].innerHTML= nota
+        }   
+
+        for(i=0;i<4;i++){
+            if(r[i].innerHTML<70){
+                r[i].style.color="red"
+            }
+            else if(r[i].innerHTML>=70){
+                r[i].style.color="green"
+            }
+        }
+    </script>
+</body>
+</html>
