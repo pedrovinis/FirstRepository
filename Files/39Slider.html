@@ -18,7 +18,7 @@
         var imgmax
 
         function preLoad(){     
-            for(i=0;i<2;i++){
+            for(i=0;i<3;i++){
             imgs[i] = new Image()
             imgs[i].src="imgs/39/img"+i+".png"
             }
@@ -33,13 +33,14 @@
                 imgnow = 0
             }
             loadImg(imgnow)
+            console.log(imgnow)
             imgnow++
         }
 
         function start(){
             preLoad() //Load no inicio para evitar demora de renderizações
             imgnow= 0
-            imgmax = imgs.length
+            imgmax = imgs.length 
             slider = document.getElementById("slider")
             loadImg(imgnow)
             setInterval(tradeImg,1000)

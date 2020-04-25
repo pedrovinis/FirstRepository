@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #slider{
+            width: 1000px;
+            height: 300px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btSlider{
+            background-color: rgba(0,0,0,0.4);
+            height: 30%;
+            color:#fff;
+            cursor: pointer;
+            outline: none;
+            margin: 10px;
+            border: none
+        }
+        #dvLoad{
+            width: 100%;
+            height: 5px;
+            margin-top: 28%;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        #dvBar{
+            width: 50%;
+            height: 100%;
+            background-color: white;
+        }
+    </style>
+    <script>
+        var slider
+        var imgs = []
+        var imgnow
+        var imgmax
+        var timetrade
+        var dvBar
+        var vtime
+    
+
+        function preLoad(){     
+            for(i=0;i<3; i++){
+            imgs[i] = new Image()
+            imgs[i].src="imgs/39/img"+i+".png"
+            console.log(i)
+            }
+        }
+        function loadImg(img){
+            slider.style.backgroundImage="url('"+imgs[img].src+"')"
+            console.log(imgnow)
+        }
+
+        function tradeImg(dir){
+            timetrade = 0
+            imgnow += dir
+            if(imgnow>imgmax){
+                imgnow = 0
+            }
+            if(imgnow<0){
+                imgnow = imgmax
+            }
+            loadImg(imgnow)
+        }
+
+        function animation(){
+            timetrade++
+            if(timetrade>300){
+                tradeImg(1)
+            }
+            dvtime = timetrade/3        //Relativo a procentagem de tempo
+            dvBar.style.width=dvtime+"%"
+
+            requestAnimationFrame(animation)
+        }
+
+        function start(){
+            preLoad() //Load no inicio para evitar demora de renderizações
+            imgmax = imgs.length-1
+            imgnow = 0
+            timetrade = 0
+            slider = document.getElementById("slider")
+            dvBar = document.getElementById("dvBar")
+            loadImg(imgnow)
+            animation()
+        }
+        addEventListener("load",start)
+
+    </script>
+</head>
+<body>
+    <div id="slider">
+        <button class="btSlider" onclick="tradeImg(-1)"><</button> 
+        <div id="dvLoad">
+            <div id="dvBar"></div>
+        </div>
+        <button class="btSlider" onclick="tradeImg(+1)">></button>
+    </div>
+        
+    <script>
+
+    </script>
+</body>
+</html>
