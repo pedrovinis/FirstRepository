@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #car{
+            width: 650px; 
+            height: 650px;
+        }
+        .c1{
+            background-image: url("imgs/41/c1.png");
+        }
+        .c2{
+            background-image: url("imgs/41/c2.png");
+        }
+        .c3{
+            background-image: url("imgs/41/c3.png");
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="tradeCar(1)">Carro 1</button>
+    <button onclick="tradeCar(2)">Carro 2</button>
+    <button onclick="tradeCar(3)">Carro 3</button>
+    <button onclick="removeCar()">Remover Carro</button>
+    <button onclick="verify()">Verificar</button>
+
+    <div id="car"></div>
+    
+    <script>
+        //O comando setAttribute adiciona um artributo a um elemento (atributo,valor)
+        //O comando removeAttribute remove um atributo de algum elemento (atributo)
+        //Verifica se um atributo encontra-se no objeto (atributo), retorna 'true' ou 'false'
+
+        var obj = document.getElementById("car")
+
+        function tradeCar(car){
+             obj.setAttribute("class","c"+car)
+        }   
+
+        function removeCar(){
+            obj.removeAttribute("class")
+        }
+
+        function verify(){
+            if (obj.hasAttribute("class")){ //true
+                alert("O atributo 'class' encontra-se no objeto car.")
+            }
+            else{   //false
+                alert("O objeto 'class' não encontra-se no objeto car.")
+            }
+        }
+
+    </script>
+</body>
+</html>
