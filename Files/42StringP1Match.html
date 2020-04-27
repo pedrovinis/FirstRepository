@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p id="txt">Lorem ipsum dolor sit amet 1994 consectetur ou adipisicing elit. Totam similique unde ou voluptatum sint? Eum, veniam similique molestias assumenda fuga, sequi at doloremque ad quae unde iste velit aliquam, 2002 tempora quod.</p>
+
+    <script>
+        /*MATCH, procura determinada palavra ou caractere dentro de uma String, caso não exista retorna 'null'. 
+        .match(/text/'Modificador')
+        Modificador i = Busca sem case-sensitive
+        Modificador g = Encontra todas as ocorrencias da palavra, e não so a primeira
+        Modificador m = Pesquisa normal sem armazenar na forma de array
+        Acessar tabela de metacaractere para mais possibilidades 
+        */
+        var text = document.getElementById("txt").innerHTML
+
+
+        var result = text.match(/ou/g)  
+        document.write("Result 0: "+result+"<br>")
+        document.write(result.length+"<br><br>")
+
+        var result1 = text.match(/[oa]/g)   //Busca por mais de uma letra 
+        document.write("Result 1: "+result1+"<br>")
+        document.write(result1.length+"<br><br>")
+
+        var result2 = text.match(/[^oa]/g)   //Busca por todas ocorrencias, menos com os caracteres 'o' e 'a'
+        document.write("Result 2: "+result2+"<br>")
+        document.write(result2.length+"<br><br>")
+
+        var result3 = text.match(/[a-j]/g)   //Retorna todas as ocorrencias entre as letras 'a' e 'j'
+        document.write("Result 3: "+result3+"<br>")
+        document.write(result3.length+"<br><br>")
+
+        var result4 = text.match(/[^a-j]/g)   //Busca por todas ocorrencias, menos entre os caracteres 'a' e 'j'
+        document.write("Result 4: "+result4+"<br>")
+        document.write(result4.length+"<br><br>")
+
+        var result5 = text.match(/\d/g)   //Exemplo de metacaractere, 'd' busca por numerais, 'D' busca por caracteres que não sejam numerais. Acessar tabela de metacaractere para mais possibilidades 
+        document.write("Result 5: "+result5+"<br>")
+        document.write(result5.length+"<br><br>")
+
+        document.write(text.length)
+    </script>
+</body>
+</html>

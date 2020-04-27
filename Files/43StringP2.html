@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="txt">Lorem ipsum dolor sit name, name amet consectetur Name adipisicing elit. Placeat, similique laboriosam voluptate, ratione maiores odit omnis consectetur, iure eveniet unde voluptatem atque nihil molestiae name accusamus. Provident cumque saepe perferendis nam.</p>
+
+    <script>
+        /*
+        Modificador i = Busca sem case-sensitive
+        Modificador g = Encontra todas as ocorrencias da palavra, e não so a primeira
+        Modificador m = Pesquisa normal sem armazenar na forma de array
+        */
+        var text = document.getElementById("txt").innerHTML
+        var text2 = " - Appear weak when you are strong, and strong when you are weak."
+
+        var result0 = text.search(/ipsum/i)   //Retorna o número no qual o caractere ou a palavra começa. Inicia no 0 e conta espaços e etc.
+        document.write("<br> Result0: "+result0)
+
+        var result1 = text.replace(/name/ig,"Pedro ")   //Replace substui determinado caractere da string
+        document.write("<br><br> Result1: "+result1)
+
+        var result2 = text.charAt(2)   //Retorna a letra que se encontra em determinado caractere
+        document.write("<br><br> Result2: "+result2)
+
+        var result3 = text.charCodeAt(2)   //Retorna o codigo do caractere em determinada posição
+        document.write("<br><br> Result3: "+result3)
+
+        document.write("<br><br> Result4: "+String.fromCharCode(114)) //Retorna o caractere de determinado codigo
+
+        var result4 = text.concat(text2 + " - The supreme art of war is to subdue the enemy without fighting.")    //Concaterna Strings (junta)
+        document.write("<br><br>"+result4)
+
+    </script>
+</body>
+</html>
