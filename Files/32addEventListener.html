@@ -39,9 +39,10 @@
                 var obj = document.getElementById("div1")
                 obj.addEventListener("click",msg)
                 //obj.addEventListener("mouseover",cor1)
-                //obj,addEventListener("mouseout",cor2)
-                obj.addEventListener("mouseover",function(event){cor(obj,"white")})
-                obj.addEventListener("mouseout",function(event){cor(obj,"red")})
+                //obj.addEventListener("mouseout",cor2)
+                obj.addEventListener("mouseover",function(){cor(obj,"white")})
+                obj.addEventListener("mouseout",function(){cor(obj,"red") 
+                console.log(event)})
             }
                       
             addEventListener("load",addEventos)
