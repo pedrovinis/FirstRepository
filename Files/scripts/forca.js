@@ -1,0 +1,1 @@
+var words=["Academia","Avião","Cozinha","Fazenda","Bolsa","Carro","Praia","Casa","Chave","Calça","Óculos","Escola","Estojo","Mochila","Umbigo","Janela","Limão","Girafa","Peixe","Elefante","Macaco","Celular","Geladeira","Televisão","Sapato","Banana"]

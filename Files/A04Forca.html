@@ -4,6 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forca</title>
+  <style>
+      #btStart{
+        background-color: rgba(120,120,120,0.1);
+        width: 50px;
+        height: 50px;
+        border: none;
+      }
+      #btTip{
+        background-color: rgba(120,120,120,0.1);
+        width: 50px;
+        height: 50px;
+        border: none;
+      }
+      #trys{
+        font-size: x-large;
+        font-weight: bold;
+      }
+      #menu{
+        font-size: x-large;
+        font-weight: lighter;
+      }
+      #stickman{
+          font-size: xx-large;
+      }
+      #word{
+          font-size: x-large;
+          font-weight: bolder;
+      }
+  </style>
+    <script src="scripts/forca.js"></script>
     <script>
         var screen
         var menu
@@ -13,18 +43,9 @@
         var wordArray = []
         var obj
         var letters=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-        var specialLetters=["Ã","Ç","Ó"]
-        var words=["Academia","Avião","Cozinha","Fazenda","Bolsa","Carro","Praia","Casa","Chave","Calça","Óculos"]
+        var specialLetters=["Ã","/","Ç","/","/","/","/","/","/","/","/","/","/","/","Ó","/","/","/","/","/","/","/","/","/","/","/"]
         var gamestatus
         var trys
-
-        var head
-        var body
-        var arm1
-        var arm2
-        var leg1
-        var leg2
-
         var sm1
         var sm2
         var sm3
@@ -56,16 +77,15 @@
             document.getElementById("btTip").addEventListener("click",tip)
         }
         function start(){
-            console.log("start()")
             interface()
             getWord()
             gamestatus=1
         }
         function tip(){
-
+            alert("Esse recurso ainda não esta disponível")
         }
         function addEvent(letterId){
-            obj=document.getElementById(letterId)
+            obj=document.getElementById("b"+letterId)
             obj.addEventListener("click",function(){
                 buttonPress(letterId)
             })
@@ -81,41 +101,48 @@
         }
         function verifyWord(id){
             wordPosition=word.search(letters[id])
-
-            if(wordPosition>=0){
+            wordPosition2=word.search(specialLetters[id])
+            if(wordPosition>=0||wordPosition2>=0){
                 if(menu.innerHTML.slice(7,menu.innerHTML.length).search(letters[id])<0){
                     menu.innerHTML += " "+letters[id]
                     
                     wordPosition=0
                     for(wordPosition; wordPosition<wordArray.length; wordPosition++){
-                        for(i=0; i<specialLetters.length; i++){
-                            if(word[wordPosition].search(specialLetters[i])>=0){
-                                wordArray.splice(wordPosition,1,specialLetters[i])
+                            if(id==0 && word[wordPosition].search(specialLetters[0])==0){//A
+                                wordArray.splice(wordPosition,1,specialLetters[0])
+                                wordresult.innerHTML=wordArray
+                            } else if(id== 2 && word[wordPosition].search(specialLetters[2])==0){//C
+                                wordArray.splice(wordPosition,1,specialLetters[1])
+                                wordresult.innerHTML=wordArray
+                            } else if(id== 14 && word[wordPosition].search(specialLetters[14])==0){//O
+                                wordArray.splice(wordPosition,1,specialLetters[2])
                                 wordresult.innerHTML=wordArray
                             }
-                        }
                         if(word[wordPosition].search(letters[id])==0){
                             wordArray.splice(wordPosition,1,letters[id])
                             wordresult.innerHTML=wordArray
                         }
                     }
-
                     wordresult.innerHTML=wordresult.innerHTML.replace(/,/g," ") 
-                    document.getElementById(id).style.color="green"
+                    document.getElementById("b"+id).style.backgroundColor = "rgba(24,230,44,0.3)"
 
                     if(wordresult.innerHTML.match(/_/)==null){
                         alert("Parabéns você ganhou! \nA palavra é "+word)
                         gamestatus=0
                     }
+                }
             }
-          }
             if(wordPosition<0){
                 if(menu.innerHTML.slice(7,menu.innerHTML.length).search(letters[id])<0){
+                    trys--
+                    document.getElementById("trys").innerHTML="Chances: "+trys
                     menu.innerHTML += " "+letters[id]
-                    document.getElementById(id).style.color="red"
+                    document.getElementById("b"+id).style.backgroundColor = "rgba(247,22,22,0.3)"
+                    stickmanActions()
                 }
             }
         }
+
         function interface(){
             gamestatus=0
             trys=6
@@ -123,11 +150,14 @@
             document.getElementById("trys").innerHTML="Chances: "+trys
             stickmanActions()
             for(i=0;i<26;i++){
-                document.getElementById(i).style.color="black"
+                elmnt = document.getElementById("b"+i)
+                elmnt.style.backgroundColor = "rgba(0,0,0,0.1)"
+                elmnt.style.width="50px"
+                elmnt.style.height="50px"
+                elmnt.style.border = "none"
             }
         }
         function stickmanActions(){
-            
             if(gamestatus==0){
             document.getElementById("sm2").innerHTML="|      "
             document.getElementById("sm3").innerHTML="|       "
@@ -191,34 +221,34 @@ ____________<div id="sm1">|    |</div><div id="sm2">|     O</div><div id="sm3">|
     <div id="word">
 
     </div>
-
+    <br>
     <div id="letters">
-        <input type="button" id="0" value="A">
-        <input type="button" id="1" value="B">
-        <input type="button" id="2" value="C">
-        <input type="button" id="3" value="D">
-        <input type="button" id="4" value="E">
-        <input type="button" id="5" value="F">
-        <input type="button" id="6" value="G">
-        <input type="button" id="7" value="H">
-        <input type="button" id="8" value="I">
-        <input type="button" id="9" value="J">
-        <input type="button" id="10" value="K">
-        <input type="button" id="11" value="L">
-        <input type="button" id="12" value="M">
-        <input type="button" id="13" value="N">
-        <input type="button" id="14" value="O">
-        <input type="button" id="15" value="P">
-        <input type="button" id="16" value="Q">
-        <input type="button" id="17" value="R">
-        <input type="button" id="18" value="S">
-        <input type="button" id="19" value="T">
-        <input type="button" id="20" value="U">
-        <input type="button" id="21" value="V">
-        <input type="button" id="22" value="W">
-        <input type="button" id="23" value="X">
-        <input type="button" id="24" value="Y">
-        <input type="button" id="25" value="Z">
+        <input type="button" id="b0" value="A">
+        <input type="button" id="b1" value="B">
+        <input type="button" id="b2" value="C">
+        <input type="button" id="b3" value="D">
+        <input type="button" id="b4" value="E">
+        <input type="button" id="b5" value="F">
+        <input type="button" id="b6" value="G">
+        <input type="button" id="b7" value="H">
+        <input type="button" id="b8" value="I">
+        <input type="button" id="b9" value="J">
+        <input type="button" id="b10" value="K">
+        <input type="button" id="b11" value="L">
+        <input type="button" id="b12" value="M"><br><br>
+        <input type="button" id="b13" value="N">
+        <input type="button" id="b14" value="O">
+        <input type="button" id="b15" value="P">
+        <input type="button" id="b16" value="Q">
+        <input type="button" id="b17" value="R">
+        <input type="button" id="b18" value="S">
+        <input type="button" id="b19" value="T">
+        <input type="button" id="b20" value="U">
+        <input type="button" id="b21" value="V">
+        <input type="button" id="b22" value="W">
+        <input type="button" id="b23" value="X">
+        <input type="button" id="b24" value="Y">
+        <input type="button" id="b25" value="Z">
     </div>
 </div>
 
