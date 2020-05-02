@@ -10,8 +10,10 @@
         var stickman
         var word
         var wordresult
+        var wordArray = []
         var obj
         var letters=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+        var specialLetters=["Ã","Ç","Ó"]
         var words=["Academia","Avião","Cozinha","Fazenda","Bolsa","Carro","Praia","Casa","Chave","Calça","Óculos"]
         var gamestatus
         var trys
@@ -37,6 +39,7 @@
         addEventListener("load",load)
         
         function addElements(){
+            wordresult=document.getElementById("word")
             stickman=document.getElementById("stickman")
             screen=document.getElementById("screen")
             menu=document.getElementById("menu")
@@ -77,32 +80,39 @@
             }
         }
         function verifyWord(id){
-            wordArray = []
             wordPosition=word.search(letters[id])
-            console.log(wordPosition)
+
             if(wordPosition>=0){
-                if(document.getElementById("menu").innerHTML.search(letters[id])<0){
-                    document.getElementById("menu").innerHTML += " "+letters[id]
+                if(menu.innerHTML.slice(7,menu.innerHTML.length).search(letters[id])<0){
+                    menu.innerHTML += " "+letters[id]
+                    
+                    wordPosition=0
+                    for(wordPosition; wordPosition<wordArray.length; wordPosition++){
+                        for(i=0; i<specialLetters.length; i++){
+                            if(word[wordPosition].search(specialLetters[i])>=0){
+                                wordArray.splice(wordPosition,1,specialLetters[i])
+                                wordresult.innerHTML=wordArray
+                            }
+                        }
+                        if(word[wordPosition].search(letters[id])==0){
+                            wordArray.splice(wordPosition,1,letters[id])
+                            wordresult.innerHTML=wordArray
+                        }
+                    }
 
-                    wordArray= document.getElementById("word").innerHTML.match(/_ /g)
-                    wordArray.splice(wordPosition,1,letters[id]+" ")
-
-                    document.getElementById("word").innerHTML = wordArray
-          
-                    document.getElementById("word").innerHTML=document.getElementById("word").innerHTML.replace(/,/g," ")
-           
-
+                    wordresult.innerHTML=wordresult.innerHTML.replace(/,/g," ") 
                     document.getElementById(id).style.color="green"
 
-
+                    if(wordresult.innerHTML.match(/_/)==null){
+                        alert("Parabéns você ganhou! \nA palavra é "+word)
+                        gamestatus=0
+                    }
             }
           }
             if(wordPosition<0){
-                if(document.getElementById("menu").innerHTML.search(letters[id])<0){
-                    document.getElementById("menu").innerHTML += " "+letters[id]
+                if(menu.innerHTML.slice(7,menu.innerHTML.length).search(letters[id])<0){
+                    menu.innerHTML += " "+letters[id]
                     document.getElementById(id).style.color="red"
-
-
                 }
             }
         }
@@ -151,15 +161,15 @@
             num = parseInt(Math.random()*words.length)
             word = words[num].toUpperCase()
             console.log(word)
-            document.getElementById("word").innerHTML=""
+            wordresult.innerHTML=""
             for(cont=0;cont<word.length;cont++){
                 console.log(word[cont])
             }
             for(i=0;i<word.length;i++){
-                document.getElementById("word").innerHTML+="_ "
+                wordresult.innerHTML+="_ "
             }
+            wordArray= wordresult.innerHTML.match(/_ /g)
         }
-        var aaa ="aaaa"
 </script>
 </head>
 <body>
