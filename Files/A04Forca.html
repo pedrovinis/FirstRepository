@@ -112,10 +112,10 @@
                                 wordArray.splice(wordPosition,1,specialLetters[0])
                                 wordresult.innerHTML=wordArray
                             } else if(id== 2 && word[wordPosition].search(specialLetters[2])==0){//C
-                                wordArray.splice(wordPosition,1,specialLetters[1])
+                                wordArray.splice(wordPosition,1,specialLetters[2])
                                 wordresult.innerHTML=wordArray
                             } else if(id== 14 && word[wordPosition].search(specialLetters[14])==0){//O
-                                wordArray.splice(wordPosition,1,specialLetters[2])
+                                wordArray.splice(wordPosition,1,specialLetters[14])
                                 wordresult.innerHTML=wordArray
                             }
                         if(word[wordPosition].search(letters[id])==0){
@@ -190,10 +190,8 @@
         function getWord(){
             num = parseInt(Math.random()*words.length)
             word = words[num].toUpperCase()
-            console.log(word)
             wordresult.innerHTML=""
             for(cont=0;cont<word.length;cont++){
-                console.log(word[cont])
             }
             for(i=0;i<word.length;i++){
                 wordresult.innerHTML+="_ "
