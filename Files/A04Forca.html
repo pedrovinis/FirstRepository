@@ -32,6 +32,11 @@
           font-size: x-large;
           font-weight: bolder;
       }
+      #score{
+          font-size: x-large;
+          margin-left: 580px;
+          margin-top: -530px;
+      }
   </style>
     <script src="scripts/forca.js"></script>
     <script>
@@ -46,6 +51,9 @@
         var specialLetters=["Ã","/","Ç","/","/","/","/","/","/","/","/","/","/","/","Ó","/","/","/","/","/","/","/","/","/","/","/"]
         var gamestatus
         var trys
+        var score
+        var wins = 0
+        var loses = 0
         var sm1
         var sm2
         var sm3
@@ -59,11 +67,15 @@
         }
         addEventListener("load",load)
         
+        function Refreshscore(){
+            score.innerHTML = "Vitórias: "+wins+"<br>Derrotas: "+loses
+        }
         function addElements(){
             wordresult=document.getElementById("word")
             stickman=document.getElementById("stickman")
             screen=document.getElementById("screen")
             menu=document.getElementById("menu")
+            score=document.getElementById("score")
             sm1=document.getElementById("sm1").innerHTML
             sm2=document.getElementById("sm2").innerHTML
             sm3=document.getElementById("sm3").innerHTML
@@ -97,6 +109,8 @@
             if(trys==0){
                 alert("Você Perdeu! A palavra era: '" +word+"'\nClique em 'Iniciar' para começar um novo jogo")
                 gamestatus=0
+                loses++
+                Refreshscore()
             }
         }
         function verifyWord(id){
@@ -129,6 +143,8 @@
                     if(wordresult.innerHTML.match(/_/)==null){
                         alert("Parabéns você ganhou! \nA palavra é "+word)
                         gamestatus=0
+                        wins++
+                        Refreshscore()
                     }
                 }
             }
@@ -197,6 +213,7 @@
                 wordresult.innerHTML+="_ "
             }
             wordArray= wordresult.innerHTML.match(/_ /g)
+            console.log(word)
         }
 </script>
 </head>
@@ -216,7 +233,7 @@
     <pre id="stickman">
 ____________<div id="sm1">|    |</div><div id="sm2">|     O</div><div id="sm3">|    /|\</div><div id="sm4">|     /\</div>|
     </pre>
-    <div id="word">
+    <div id="word"> <br>
 
     </div>
     <br>
@@ -248,6 +265,8 @@ ____________<div id="sm1">|    |</div><div id="sm2">|     O</div><div id="sm3">|
         <input type="button" id="b24" value="Y">
         <input type="button" id="b25" value="Z">
     </div>
+    <div id="score">Vitórias: 0 <Br>
+    Derrotas: 0</div>
 </div>
 
 </body>
