@@ -103,6 +103,9 @@
             })
         }
         function buttonPress(id){
+            if(gamestatus==0){
+                alert("Clique em 'Iniciar' para começar um novo jogo")
+            }
             if(gamestatus==1&&trys>=1){
                 verifyWord(id)
             }
