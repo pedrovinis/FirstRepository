@@ -60,10 +60,7 @@
         var score
         var wins = 0
         var loses = 0
-        var sm1
-        var sm2
-        var sm3
-        var sm4
+        var sm1,sm2,sm3,sm4
 
         function load(){
             menu = 0
@@ -109,7 +106,7 @@
             })
         }
         function buttonPress(id){
-            if(gamestatus==0){
+            if(gamestatus==0&&trys!=0){
                 alert("Clique em 'Iniciar' para começar um novo jogo")
             }
             if(gamestatus==1&&trys>=1){
