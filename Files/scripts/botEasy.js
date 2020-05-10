@@ -1,4 +1,5 @@
 function easy(){
+    botdelay=1
     var trys
     num = parseInt(Math.random()*8+1)
     
@@ -9,9 +10,7 @@ function easy(){
         interfaceRefresh()
         verifyWin()
         trys=0
-    } else{
-        trys++
-        if(trys==5){
+    } else if(trys==5){
             for(i=1;i<9;i++){
                 if(p[i].value=="  "){
                     p[num].value= "O"
@@ -23,8 +22,8 @@ function easy(){
                 }
             }
         }
-        else{
-            easy()
-        }
+    else{
+        trys++
+        easy()
     }
 }

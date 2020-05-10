@@ -1,4 +1,5 @@
 function medium(){
+    botdelay=1
     var num = parseInt(Math.random()*8+1)
     var trys
 
@@ -39,29 +40,25 @@ function medium(){
         p[num].value= "O"
         oPos+=num
         xo=0
-        trys=0
         interfaceRefresh()
         verifyWin()
+        trys=0
     } 
-    else{
-        trys++
-        if(trys==5){
+    else if(trys==5){
             for(i=1;i<10;i++){
                 console.log("i: "+i)
                 if(p[i].value=="  "){
                     p[num].value= "O"
                     oPos+=num
-                    xo=0
                     interfaceRefresh()
                     verifyWin()
                     trys=0
                 }
             }
-        }
-        else{
+    }
+    else{
+            trys++
             medium()
         }
-    }
-
  
 }

@@ -5,26 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Velha</title>
     <style>
+        #screen{
+            margin-left: 40%;
+            display: inline-block;
+        }
+        #mode{
+            display: inline-block;
+            margin-left: 25%;
+            
+            font-weight:bold;
+            border: transparent solid 1px;
+        }
+        #table{
+            display: inline-block;
+        }
+        #xWins{
+            display: inline-block;
+            font-size: 25px;
+            width: 42px;
+            color: black;
+            border: solid;
+        }
         #scoreTab1{
+            margin-left: 70px;
+            display: inline-block;
+        }
+        #scoreTabMid{
+            font-size: xx-large;
+            font-weight: bolder;
             display: inline-block;
         }
         #scoreTab2{
             display: inline-block;
         }
+        #oWins{
+            margin-top: -74px;
+            font-size: 25px;
+            color: black;
+            border: solid;
+            width: 42px;
+            margin-left: 250px;
+        }
+        #restart{
+            display: inline-block;
+            margin-left: 100px;
+            margin-top: 50px;
+            background-color: rgba(2, 2, 2, 0.05);
+            width: 100px;
+            height: 30px;
+            border: none;
+        }
     </style>
     <script src="scripts/botEasy.js"></script>
     <script src="scripts/botMedium.js"></script>
+    <script src="scripts/botImpossible.js"></script>
     <script>
         var gamestatus = 0
         var winPos = ["123","159","258","147","369","456","789","357"]
         var xo=0
         var xPos
         var oPos
+        var xWins = 0
+        var oWins = 0
         var p= []
         var mode
         var scoreTab1
         var scoreTab2
         var modev
+        var botdelay=1
         var interfaceX
         var interfaceO
 
@@ -54,19 +102,25 @@
                         p[i].style.border="solid 2px"
                         p[i].value = "  "
                         p[i].value.style
+                        p[i].style.fontSize="30px"
                     }
                 }
                 xPos=""
                 oPos=""
+                xo=0
             }
             if(gamestatus==1){
                 if(xo==0){
-                    document.getElementById("scoreTab1").style.fontSize="xx-large"
-                    document.getElementById("scoreTab2").style.fontSize="medium"
+                    document.getElementById("scoreTab1").style.fontSize="xxx-large"
+                    document.getElementById("scoreTab1").style.fontWeight="bolder"
+                    document.getElementById("scoreTab2").style.fontWeight="bolder"
+                    document.getElementById("scoreTab2").style.fontSize="x-large"
                 }
                 else if(xo==1){
-                    document.getElementById("scoreTab2").style.fontSize="xx-large"
-                    document.getElementById("scoreTab1").style.fontSize="medium"
+                    document.getElementById("scoreTab2").style.fontSize="xxx-large"
+                    document.getElementById("scoreTab2").style.fontWeight="bolder"
+                    document.getElementById("scoreTab1").style.fontWeight="bolder"
+                    document.getElementById("scoreTab1").style.fontSize="x-large"
                 }
             }
         }
@@ -121,8 +175,9 @@
                         xo=1
                         interfaceRefresh()
                         verifyWin()
-                    }if(xo==1&&gamestatus==1){
-                        easy()
+                    }if(xo==1&&gamestatus==1&&botdelay==1){
+                        botdelay=0
+                        setTimeout(easy,1000)
                     }
                 }
 
@@ -133,22 +188,44 @@
                         xo=1
                         interfaceRefresh()
                         verifyWin()
+                        buttonPressed(1)
                     }
-                    if(xo==1){
-                        medium()
+                    if(xo==1&&gamestatus==1&&botdelay==1){
+                        botdelay=0
+                        setTimeout(medium,800)
                     }
                 }
+
+                if(modev==3){ //Impossible
+                    if(xo==0&&p[id].value=="  "){
+                        p[id].value= "X"
+                        xPos+=id
+                        xo=1
+                        interfaceRefresh()
+                        verifyWin()
+                        buttonPressed(1)
+                    }
+                    if(xo==1&&gamestatus==1&&botdelay==1){
+                        botdelay=0
+                        setTimeout(impossible,800)
+                    }
+                }
+
             }
         }
-        function verifyWin(){                
+
+
+        function verifyWin(){
             if(xPos.length>=3){
                 for(i=0; i<winPos.length; i++){
                      if(xPos.search(winPos[i].slice(0,1))>=0){
                         if(xPos.search(winPos[i].slice(1,2))>=0){
                             if(xPos.search(winPos[i].slice(2,3))>=0){
                                 alert(" X  Ganhou!")
+                                xWins+=1
                                 i=winPos.length
                                 gamestatus=0
+                                winsRefresh()
                             }
                         }
                     }
@@ -160,8 +237,10 @@
                         if(oPos.search(winPos[i].slice(1,2))>=0){
                             if(oPos.search(winPos[i].slice(2,3))>=0){
                                 alert(" O  Ganhou!")
+                                oWins+=1
                                 i=winPos.length
                                 gamestatus=0
+                                winsRefresh()
                             }
                         }
                     }
@@ -172,20 +251,30 @@
                 gamestatus=0
             }
         }
+        function winsRefresh(){
+            document.getElementById("xWins").innerHTML = xWins+"  "
+            document.getElementById("oWins").innerHTML = "  "+oWins
+            if(oWins>9){
+                document.getElementById("oWins").innerHTML = " "+oWins
+            }
+            if(oWins>99){
+                document.getElementById("oWins").innerHTML = ""+oWins
+            }
+        }
             
     </script>
 </head>
 <body>
     <div id="screen">
     <select id="mode">
-        <option id="0" value="0" selected>Jogar contra um amigo</option>
+        <option id="0" value="0" selected >Jogar contra um amigo</option>
         <option id="1" value="1">Fácil</option>
         <option id="2" value="2">Médio</option>
         <option id="3" value="3">Impossível</option>
     </select>
     <br>
     <div>
-    <pre id="scoreTab1">X </pre>-<pre id="scoreTab2"> O</pre>
+    <pre id="xWins">0  </pre><pre id="scoreTab1">X </pre><pre id="scoreTabMid">-</pre><pre id="scoreTab2"> O     </pre><pre id="oWins">  0</pre>
     <br><br>
     <div id="table">
         <input type="button" id="p1" value="  "><input type="button" id="p2" value="  "><input type="button" id="p3" value="  "><br>
