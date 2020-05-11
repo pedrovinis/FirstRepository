@@ -1,0 +1,42 @@
+#p1{
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+#p2{
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+#p3{
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+#p4{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+#p5{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+#p6{
+    border-top: 2px solid black ;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+#p7{
+    border-top: 2px solid black ;
+    border-right: 2px solid black;
+}
+#p8{
+    border-top: 2px solid black ;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+#p9{
+    border-top: 2px solid black ;
+    border-left: 2px solid black;
+}
