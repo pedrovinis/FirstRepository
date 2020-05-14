@@ -97,8 +97,22 @@ function impossible(){
         else if(xPos.search(3)>=0&&xPos.search(7)>=0){
             num = 6
         }
-        if(xPos.search(2)>=0||xPos.search(4)>=0||xPos.search(6)>=0||xPos.search(8)>=0&&p[5].value==~"  "){
+        if(xPos.search(2)>=0||xPos.search(4)>=0||xPos.search(6)>=0||xPos.search(8)>=0&&p[5].value=="  "){
             num = 5
+        }
+        if(xPos.search(5)>=0){
+            if(xPos.search(9)>=0&&p[3].value=="  "){
+                num = 3
+            }
+            if(xPos.search(7)>=0&&p[1].value=="  "){
+                num = 1
+            }
+            if(xPos.search(1)>=0&&p[7].value=="  "){
+                num = 7
+            }
+            if(xPos.search(3)>=0&&p[9].value=="  "){
+                num = 9 
+            }
         }
     }
         
@@ -112,6 +126,7 @@ function impossible(){
     }
 
     for(i=0; i<winPos.length; i++){
+        
         if(xPos.search(winPos[i].slice(0,1))>=0&&xPos.search(winPos[i].slice(1,2))>=0&&p[winPos[i].slice(2,3)].value=="  "){
             num = winPos[i].slice(2,3)
             console.log("Condition 1: "+num+"    WinPos:"+i)
