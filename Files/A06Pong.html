@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong</title>
+    <style>
+        #screen{
+            background-color: black;
+        }
+        #cpu{
+            background-color: white;
+            position: absolute;
+        }
+        #player{
+            background-color: yellow;
+            position: absolute;
+        }
+        #ball{
+            background-color: yellow;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="screen">
+        <div id="cpu"></div>
+        <div id="ball"></div>
+        <div id="player"></div>
+    </div>
+    <input type="button" id="start" value="Start">
+    <script>
+        var gamestatus
+        var elementScreen
+        var elementCpu
+        var elementBall
+        var elementPlayer
+        var speed
+        var frame
+        
+        const screen = {
+            width: 650,
+            height: 700
+        }
+        const cpu = {
+            posX: 0,
+            posY: 5,
+            width: 100,
+            height: 15,
+            wins: 0
+        }
+        const player = {
+            posX: 0,
+            posY: 680,
+            width: 100,
+            height: 15,
+            wins: 0
+        }
+        const ball = {
+            posX: 0,
+            posY: 325,
+            width: 20,
+            height: 20,
+            directionX: 0,
+            directionY: -1
+        }
+
+        load()
+        function load(){
+            initialElements()
+            addButtons()
+        }
+        function start(){
+            if(gamestatus==0){
+                initialElements()
+                console.log("Game Started")
+                addEvents()
+                gamestatus=1
+                gameRefresh() 
+            }
+        }
+
+        function initialElements(){
+            elementCpu = document.getElementById("cpu")
+            elementPlayer = document.getElementById("player")
+            elementBall = document.getElementById("ball")
+            elementScreen = document.getElementById("screen")
+
+            elementScreen.style.width = screen.width +"px"
+            elementScreen.style.height = screen.height +"px"
+
+            cpu.posX = screen.width/2-cpu.width/2
+            cpu.posY = screen.height/140
+            player.posX = screen.width/2-player.width/2
+            player.posY = screen.height-player.height-cpu.posY
+            ball.posX = screen.width/2 -ball.width/2
+            ball.posY = screen.height/2 - ball.height/2
+
+            elementCpu.style.marginLeft = cpu.posX+"px"
+            elementCpu.style.marginTop = cpu.posY +"px"
+            elementCpu.style.width = cpu.width +"px"
+            elementCpu.style.height = cpu.height +"px"
+
+            elementPlayer.style.marginLeft = player.posX +"px"
+            elementPlayer.style.marginTop = player.posY +"px"
+            elementPlayer.style.width = player.width +"px"
+            elementPlayer.style.height = player.height +"px"
+
+
+            elementBall.style.marginLeft = ball.posX +"px"
+            elementBall.style.marginTop = ball.posY +"px"
+            elementBall.style.width = ball.width +"px"
+            elementBall.style.height = ball.height +"px"
+
+            gamestatus=0
+        }
+        function addButtons(){
+            document.getElementById("start").addEventListener("click",start)
+        }
+
+        function setSpeed(value){
+            this.speed = value
+        }
+        setSpeed(10)
+
+        function addEvents(){
+            addEventListener("keydown",function(){
+                buttons(this.event.keyCode)
+            })
+        }
+        function buttons(id){
+            switch(id){
+                case 37:
+                    if(player.posX>0){
+                        player.posX -= 1*speed
+                    }
+                    if(player.posX<0){
+                        player.posX = 0
+                    }
+                break
+                case 39:
+                    if(player.posX<screen.width-player.width){
+                        player.posX += 1*speed
+                    }
+                    if(player.posX>screen.width-player.width){
+                        player.posX = screen.width-player.width
+                    }
+                break
+                case 65:
+                    if(player.posX>0){
+                        player.posX -= 1*speed
+                    }
+                    if(player.posX<0){
+                        player.posX = 0
+                    }
+                break
+                case 68:
+                    if(player.posX<screen.width-player.width){
+                        player.posX += 1*speed
+                    }
+                    if(player.posX>screen.width-player.width){
+                        player.posX = screen.width-player.width
+                    }   
+                break
+            }
+        }
+        function cpuRefresh(){
+            cpu.posX=ball.posX-ball.width/2
+        }
+
+        function positionRefresh(){
+            elementCpu.style.marginLeft = cpu.posX +"px"
+            elementPlayer.style.marginLeft = player.posX +"px"
+            elementBall.style.marginLeft = ball.posX +"px"
+            elementBall.style.marginTop = ball.posY +"px"
+        }
+        function ballRefresh(){
+            if(ball.posX+ball.width>=screen.width){
+                ball.directionX *= -1
+            } else if(ball.posX<=0){
+                ball.directionX *= -1
+            }
+
+            if(ball.posY<=cpu.posY+cpu.height&&ball.posX+ball.width>=cpu.posX&&ball.posX<=cpu.posX+cpu.width){    
+                ball.directionY *= -1
+                if(ball.directionX==0){
+                    num = Math.ceil(Math.random()*2)
+                    if(num==1){
+                        ball.directionX = -1
+                    }else if(num==2){
+                        ball.directionX = 1
+                    }
+                }
+                
+            } else if(ball.posY>=player.posY-player.height&&ball.posX+ball.width>=player.posX&&ball.posX<=player.posX+player.width){
+                ball.directionY *= -1
+                if(ball.directionX==0){
+                    num = Math.ceil(Math.random()*2)
+                    if(num==1){
+                        ball.directionX = -1
+                    }else if(num==2){
+                        ball.directionX = 1
+                    }
+                }
+            }
+
+            if(ball.directionY==-1){
+                ball.posY -= speed/2
+            }
+            else if(ball.directionY==1){
+                ball.posY += speed/2
+            }
+            if(ball.directionX==1){
+                ball.posX += speed/2
+            }
+            else if(ball.directionX==-1){
+                ball.posX -= speed/2
+            }
+            
+        }
+        function gameRefresh(){
+            if(gamestatus==1){
+                ballRefresh()
+                cpuRefresh()
+                positionRefresh()
+                frame = requestAnimationFrame(gameRefresh)
+            }
+            if(gamestatus==0){
+                stopGameRefresh()
+            }
+        }
+        function stopGameRefresh(){
+            cancelAnimationFrame(frame)
+        }
+    </script>
+</body>
+</html>
