@@ -13,36 +13,70 @@
             position: absolute;
         }
         #player{
-            background-color: yellow;
+            background-color: white;
             position: absolute;
         }
         #ball{
-            background-color: yellow;
+            background-color: white;
             position: absolute;
+        }
+        #start{
+            background-color: rgba(223, 247, 7, 0.589);
+            font-weight: bolder;
+            width: 50px;
+            height: 30px;
+            border: none;
+        }
+        #config{
+            display: inline;
+            background-color: rgba(102, 24, 190, 0.699);
+            font-weight: bolder;
+            height: 30px;
+            border: none;
+        }
+        #score{
+            display: inline;
+            font-weight: bolder;
+            font-size: 20px;
+            background-color:rgba(216, 29, 23, 0.705);
+        }
+        #winMessage{
+            position: absolute;
+            font-size: 50px;
+            color: red;
         }
     </style>
 </head>
 <body>
     <div id="screen">
         <div id="cpu"></div>
+        <div id="winMessage"></div>
         <div id="ball"></div>
         <div id="player"></div>
     </div>
     <input type="button" id="start" value="Start">
+    <input type="button" id="config" value="Configurations">
+    <div id="score"></div>
     <script>
         var gamestatus
         var elementScreen
         var elementCpu
         var elementBall
         var elementPlayer
+        var elementScore
+        var elementWinMessage
+        var elementConfig
         var speed
         var frame
-        
+        var cpuWins=0
+        var playerWins=0
+
         const screen = {
-            width: 650,
+            width: 600,
             height: 700
         }
         const cpu = {
+            level: 3,
             posX: 0,
             posY: 5,
             width: 100,
@@ -64,19 +98,28 @@
             directionX: 0,
             directionY: -1
         }
-
+        const score = {
+            width: 210
+        }
+        const config ={
+            height: 30,
+            width: 115
+        }
         load()
         function load(){
             initialElements()
             addButtons()
+            addEvents()
         }
         function start(){
             if(gamestatus==0){
                 initialElements()
                 console.log("Game Started")
-                addEvents()
                 gamestatus=1
                 gameRefresh() 
+            }
+            if(gamestatus==1){
+                document.getElementById("start").style.backgroundColor = "rgba(74, 248, 98, 0.589)"
             }
         }
 
@@ -85,6 +128,17 @@
             elementPlayer = document.getElementById("player")
             elementBall = document.getElementById("ball")
             elementScreen = document.getElementById("screen")
+            elementScore = document.getElementById("score")
+            elementWinMessage = document.getElementById("winMessage")
+            elementConfig = document.getElementById("config")
+
+            elementWinMessage.innerHTML = ""
+            elementWinMessage.marginTop= screen.height/2 + "px"
+            elementWinMessage.marginLeft=screen.width/5 + "px"
+
+            elementScore.innerHTML = "Cpu: "+cpuWins+" - Player: "+playerWins
+            elementScore.style.width = score.width+"px"
+            elementScore.style.marginLeft = (screen.width-score.width-config.width)+"px"
 
             elementScreen.style.width = screen.width +"px"
             elementScreen.style.height = screen.height +"px"
@@ -95,6 +149,7 @@
             player.posY = screen.height-player.height-cpu.posY
             ball.posX = screen.width/2 -ball.width/2
             ball.posY = screen.height/2 - ball.height/2
+            ball.directionX = 0
 
             elementCpu.style.marginLeft = cpu.posX+"px"
             elementCpu.style.marginTop = cpu.posY +"px"
@@ -114,10 +169,21 @@
 
             gamestatus=0
         }
+        function winMessage(who){
+            if(who=="cpu"){
+                elementWinMessage.innerHTML = "Cpu Wins"
+            }
+            else if(who=="player"){
+                elementWinMessage.innerHTML = "Player Wins"
+            }
+        }
         function addButtons(){
             document.getElementById("start").addEventListener("click",start)
+            document.getElementById("config").addEventListener("click",configmenu)
         }
-
+        function configmenu(){
+            alert("Offline")
+        }
         function setSpeed(value){
             this.speed = value
         }
@@ -127,8 +193,13 @@
             addEventListener("keydown",function(){
                 buttons(this.event.keyCode)
             })
+            addEventListener("keyup",function(){
+                buttons(0)
+            })
+            
         }
         function buttons(id){
+            
             switch(id){
                 case 37:
                     if(player.posX>0){
@@ -161,11 +232,23 @@
                     if(player.posX>screen.width-player.width){
                         player.posX = screen.width-player.width
                     }   
-                break
+                default: player.posX*0
             }
         }
         function cpuRefresh(){
-            cpu.posX=ball.posX-ball.width/2
+            if(cpu.level==1){
+
+            }else if(cpu.level==2){
+
+            } else if(cpu.level==3){
+                num = ball.posX-player.width/2
+                if(cpu.posX+cpu.width>screen.width){
+                    num = screen.width-cpu.width
+                } else if(cpu.posX<0){
+                    num = 0
+                }
+                cpu.posX=num
+            }
         }
 
         function positionRefresh(){
@@ -175,35 +258,6 @@
             elementBall.style.marginTop = ball.posY +"px"
         }
         function ballRefresh(){
-            if(ball.posX+ball.width>=screen.width){
-                ball.directionX *= -1
-            } else if(ball.posX<=0){
-                ball.directionX *= -1
-            }
-
-            if(ball.posY<=cpu.posY+cpu.height&&ball.posX+ball.width>=cpu.posX&&ball.posX<=cpu.posX+cpu.width){    
-                ball.directionY *= -1
-                if(ball.directionX==0){
-                    num = Math.ceil(Math.random()*2)
-                    if(num==1){
-                        ball.directionX = -1
-                    }else if(num==2){
-                        ball.directionX = 1
-                    }
-                }
-                
-            } else if(ball.posY>=player.posY-player.height&&ball.posX+ball.width>=player.posX&&ball.posX<=player.posX+player.width){
-                ball.directionY *= -1
-                if(ball.directionX==0){
-                    num = Math.ceil(Math.random()*2)
-                    if(num==1){
-                        ball.directionX = -1
-                    }else if(num==2){
-                        ball.directionX = 1
-                    }
-                }
-            }
-
             if(ball.directionY==-1){
                 ball.posY -= speed/2
             }
@@ -216,7 +270,51 @@
             else if(ball.directionX==-1){
                 ball.posX -= speed/2
             }
+
+            if(ball.posX+ball.width>=screen.width){
+                ball.directionX *= -1
+            } else if(ball.posX<=0){
+                ball.directionX *= -1
+            }
             
+            if(ball.posY<=cpu.posY+cpu.height&&ball.posX+ball.width>=cpu.posX&&ball.posX<=cpu.posX+cpu.width){    
+                ball.directionY = 1
+                if(ball.directionX==0){
+                    num = Math.ceil(Math.random()*2)
+                    if(num==1){
+                        ball.directionX = -1
+                    }else if(num==2){
+                        ball.directionX = 1
+                    }
+                }
+            } else if(ball.posY>=player.posY-player.height&&ball.posX+ball.width>=player.posX&&ball.posX<=player.posX+player.width){
+                ball.directionY *= -1
+                if(ball.directionX==0){
+                    num = Math.ceil(Math.random()*2)
+                    if(num==1){
+                        ball.directionX = -1
+                    }else if(num==2){
+                        ball.directionX = 1
+                    }
+                }
+            }
+            if(ball.posY+ball.height>player.posY){
+                if(ball.posX>player.posX+player.width||ball.posX+ball.width<player.posX){
+                    ball.posY = screen.height-ball.height
+                    cpuWins++
+                    winMessage("cpu")
+                    scoreRefresh()
+                    gamestatus = 0
+                }
+            } else if (ball.posY<cpu.posY+cpu.height){
+                if(ball.posX>cpu.posX+cpu.width||ball.posX<cpu.posX){
+                    ball.posY = 0
+                    playerWins++
+                    winMessage("player")
+                    scoreRefresh()
+                    gamestatus = 0 
+                }
+            }
         }
         function gameRefresh(){
             if(gamestatus==1){
@@ -226,11 +324,17 @@
                 frame = requestAnimationFrame(gameRefresh)
             }
             if(gamestatus==0){
+                document.getElementById("start").style.backgroundColor= "rgba(223, 247, 7, 0.589)"
+                positionRefresh()
                 stopGameRefresh()
+                scoreRefresh()
             }
         }
         function stopGameRefresh(){
             cancelAnimationFrame(frame)
+        }
+        function scoreRefresh(){
+            elementScore.innerHTML = "Cpu: "+cpuWins+" - Player: "+playerWins
         }
     </script>
 </body>
