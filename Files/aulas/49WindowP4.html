@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <iframe src=""></iframe>
+    <iframe src=""></iframe>
+    <iframe src=""></iframe>
+    
+
+    <div id="painel"></div>
+    <script>
+        //frames, length, parent       parent > * Verificar segundo arquivo na pasta '49'
+
+        var qtde = window.length
+
+        document.write(qtde)
+
+        window.frames[0].location="49/NewWindow.html"   //Botões não funcionam no google chrome
+        window.frames[1].location="https://www.google.com/"
+
+    </script>
+</body>
+</html>

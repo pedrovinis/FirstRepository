@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="changeColor('red')">Red</button>
+    <button onclick="changeColor('Green')">Green</button>
+    <button onclick="changeColor('Blue')">Blue</button>
+    <script>
+        function changeColor(color){    //Sem funcionamento no google chrome
+            parent.document.body.style.backgroundColor = color  //Parent vai mudar a cor da página principal > 49WindowP4.html <
+        }
+    </script>
+</body>
+</html>

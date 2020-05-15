@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #painel{
+            width: 400px;
+            height: 500px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="painel"></div>
+
+
+    <script>
+        //Navigator
+
+        var painel = document.getElementById("painel")
+        painel.innerHTML = "Browser name: " + navigator.appName 
+        painel.innerHTML += "<hr>Browser version: " + navigator.appVersion
+        painel.innerHTML += "<hr>Cookies enabled: " + navigator.cookieEnabled
+        navigator.geolocation.getCurrentPosition(locate) //(função sucesso, função erro, opções)
+        painel.innerHTML += "<hr>Language: "+navigator.language
+        painel.innerHTML += "<hr>Online: "+navigator.onLine
+        painel.innerHTML += "<hr>Plataform: "+navigator.platform
+        painel.innerHTML += "<hr>Browse Engine: "+navigator.product
+        painel.innerHTML += "<hr>Agent: "+navigator.userAgent
+
+        //GeoLocation getCurrentPosition funções
+
+        function locate(positon){
+            var c = positon.coords
+            painel.innerHTML += "<hr>Location:<br>Lat: "+c.latitude+"<br>Lon: "+c.longitude
+        }
+    </script>
+</body>
+</html>
