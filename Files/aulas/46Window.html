@@ -6,9 +6,29 @@
     <title>Document</title>
 </head>
 <body>
-    <script>//(Open,Close)
+    <iframe src="" name="frameName"></iframe><br>
+    <input type="button" value="IFrame" onclick="buttonPress(1)">
+    <input type="button" value="New Page" onclick="buttonPress(2)"><br>
+    <input type="button" value="Close Page" onclick="closeIframe()">
+    <script>//Window(Open,Close)
 
-    const myWindow = window.open("46/NewWindow.html")  //Abre uma janela com o arquivo do diretório local
+    /*Abre uma janela com o arquivo do diretório local  //_blank abre em uma nova guia e é padrão caso não seja espécificado parametro. _self abre na mesma guia.
+    Pode ser usado para abrir em um frame*/
+    
+    var iframeWindow
+    var pageWindow
+
+    function buttonPress(id){
+        if(id==1){
+            iframeWindow = window.open("46/NewWindow.html","frameName")  
+        }else if(id=2){
+            pageWindow = window.open("46/NewWindow.html","_blank","width=300,height=300")  
+        }
+    }
+    
+    function closeIframe(id){
+        pageWindow.close()
+    }
 
     </script>
 </body>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #painel{
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 15px;
+            width: 150px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button id="write">Tamanho</button>
+
+    <div id="painel"></div>
+    <script>
+        /*Window innerWidth, innerHeight, screenX, screenY. Obtém tamanhos da janela aberta no navegador
+        Faça testes movimentado a janela
+        */
+        var w,h,px,py
+        
+        var painel = document.getElementById("painel")
+        document.getElementById("write").addEventListener("click",write)
+        
+        function write(){
+            w = window.innerWidth 
+            h = window.innerHeight  
+            px = window.screenX
+            py = window.screenY
+            painel.innerHTML = "Width: "+w+"<br>Height: "+h+"<br>Px: "+px+"<br>Py: "+py
+        }
+    </script>
+</body>
+</html>
