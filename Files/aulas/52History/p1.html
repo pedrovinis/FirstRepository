@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Page 1</h1>
+    <p id="info"></p>
+    <hr>
+    <a href="52History.html">Home</a>
+    <a href="p1.html">Page 1</a>
+    <a href="p2.html">Page 2</a>
+    <br><br>
+    <button id="btBack">Back</button>
+    <button id="btNext">Next</button>
+    <button id="go">Go</button>
+
+    <script>
+        //History
+        var painel = document.getElementById("info")
+        document.getElementById("btBack").addEventListener("click",hBack)
+        document.getElementById("btNext").addEventListener("click",hNext)
+        document.getElementById("go").addEventListener("click",hGo)
+
+        painel.innerHTML = "Visited pages: "+history.length
+
+        function hBack(){
+            window.history.back()
+        }
+        function hNext(){
+            history.forward()
+        }
+        function hGo(){
+            num = window.prompt("Value. Negative for Back, Positive for Next")
+            window.history.go(num)  //Avança ou retrocede determinado número de páginas. Negativo para voltar, positivo para avançar.
+        }
+    </script>
+</body>
+</html>

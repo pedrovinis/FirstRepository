@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #painel{
+            width: 400px;
+            height: 500px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="painel"></div>
+
+    <script>
+        //Screen
+
+        var painel = document.getElementById("painel")
+
+        painel.innerHTML = "Width: "+screen.width+"px<br>Height: "+screen.height+"px"
+        painel.innerHTML += "<hr>Avaiable Width: "+screen.availWidth+"px<br>Avaiable Height: "+screen.availHeight+"px" //Sem barra de tarefas e etc.
+        painel.innerHTML += "<hr>Color Depth: "+screen.colorDepth+"bits<br>Pixel Depth: "+screen.pixelDepth+"bits/pixel"    //Profundidade de cores (imagens), Cor da Tela por pixel
+    </script>
+</body>
+</html>
