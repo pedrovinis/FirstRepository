@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button onclick="assign()">Assign</button>
+    <button onclick="replace()">Replace</button>
+    <button onclick="reload()">Reload page</button>
+
+    <script>
+
+        //location.assign("https://github.com/pedrovinis/JavaScript") //Carrega uma url 
+        //location.replace("https://github.com/pedrovinis/JavaScript") //Carrega uma url e remove a atual do historico
+
+        function assign(){
+            location.assign("https://github.com/pedrovinis/JavaScript")
+        }
+        function replace(){
+            location.replace("https://github.com/pedrovinis/JavaScript")
+        }
+        function reload(){
+            location.reload()
+        }
+
+    </script>
+</body>
+</html>

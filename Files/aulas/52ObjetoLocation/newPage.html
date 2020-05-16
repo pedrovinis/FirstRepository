@@ -4,13 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: #f00;
+            color: #fff;
+        }
+        a{
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 
     <h1>New Page</h1>
 
-    <a href=""></a>
+    <a href="52ObjetoLocation.html">Back</a>
+
+    
     <script>
+        //Objeto Location
+
+        var aux = location.hash
+        document.write("<hr>"+aux)
+
+        var data = aux.split("#")
+        document.write("<br>Dados: "+data)
+
+        //var h = location.host     //Não funciona Offline
+        //var hname = location.hostname     //Não funciona Offline
+        //document.write("<br>Host: "+host+"<br>Hostname: "+hname+"<br>") //Não funciona Offline
+
+        var href = location.href //Pega a Url da pagina
+        document.write("<br>Href: "+href+"<br>")
+
+        //var href1 = location.href="https://github.com/pedrovinis/JavaScript" //Direciona para o link definido ao entrar na pagina
+
+        var origin = location.origin
+        document.write("Origem: "+origin+"<br>") //Retorna protocolos e etc caso esteja online Protocolo,Hostname,Porta
+
+        var pathName = location.pathname
+        document.write("Path name: "+pathName+"<br>")
+
+        var protocol = location.protocol
+        document.write("Protocol: "+protocol+"<br>")
+
+
+
+        var search = location.search
+        var data1 = search.split("?")
+
+        document.write("<br>Search: "+search)
+
 
     </script>
 </body>
