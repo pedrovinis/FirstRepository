@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+  52      /*Local Storage     para visualizar os itens, acesse o console e vá até a aba Application no google chrome
+        Os itens ficam armazenados na máquina do usuário, até que sejam deletados*/
+
+        if(typeof(Storage)!=undefined){
+            localStorage.setItem("github","javascript")
+            //localStorage.removeItem("github")     //Comando usado para remover um localStorage
+        
+            //var key = localStorage.getItem("github")
+            var key = localStorage.github
+
+            document.write("<h1>"+key+"</h1>")
+
+            if(localStorage.visits){
+                localStorage.visits ++
+            } 
+            else{
+                localStorage.visits = 1
+            }
+            document.write("<h1>Visits: "+localStorage.visits+"<br><br>")
+
+
+        }
+        else {
+            document.write("seu Browser não suporta WebStorage")
+        }
+    </script>
+</body>
+</html>

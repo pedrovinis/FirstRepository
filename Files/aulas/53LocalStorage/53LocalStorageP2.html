@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body">
+    
+    <h1 id="name"></h1><br>
+
+    <form id="config">
+        <label>Name</label>
+        <input type="text" name="cfgname" id="cfgname"><br><br>
+        <label>Background Color</label><br>
+        <input type="radio" name="cfgbc" onclick="changebc(0)">Light<br>
+        <input type="radio" name="cfgbc" onclick="changebc(1)">Dark<br>
+        <input type="radio" name="cfgbc" onclick="changebc(2)">Red<br>
+        <input type="radio" name="cfgbc" onclick="changebc(3)">Green<br><br>
+        
+        <label>Font Color</label><br>
+        <input type="radio" name="cfgfc" onclick="changefc(0)">Black<br>
+        <input type="radio" name="cfgfc" onclick="changefc(1)">White<br><br>
+        
+        <input type="button" id="save" value="Save" onclick="savecfg()"><br><br>
+    </form>
+    <script>
+        /*Local Storage     para visualizar os itens, acesse o console e vá até a aba Application no google chrome
+        Os itens ficam armazenados na máquina do usuário, até que sejam deletados*/
+
+        var cname
+        var bc
+        var fc 
+
+
+        if(typeof(Storage)!=undefined){
+    
+            start()
+            function start(){
+                if(localStorage.name!=undefined&&localStorage.bc!=undefined&&localStorage.fc!=undefined){
+                    cname = localStorage.name
+                    bc = localStorage.bc
+                    fc = localStorage.fc
+                }
+                else {
+                    localStorage.setItem("name"," ")
+                    localStorage.setItem("bc","white")
+                    localStorage.setItem("fc","black")
+                }
+                load()
+            }
+            function load(){
+                document.getElementById("name").innerHTML = cname
+                document.getElementById("body").style.backgroundColor = bc
+                document.getElementById("body").style.color = fc
+            }
+
+            
+            function changebc(id){
+                if(id==0){
+                    bc = "white"
+                }
+                else if(id==1){
+                    bc = "black"
+                }
+                else if(id==2){
+                    bc = "red"
+                }
+                else if(id==3){
+                    bc = "green"
+                }
+                load()
+            }
+
+            function changefc(id){
+                if(id==0){
+                    fc  = "black"
+                }
+                else if(id==1){
+                    fc = "white"
+                }
+                load()
+            }
+
+            function savecfg(){
+                cname = document.getElementById("cfgname").value
+                localStorage.name = cname
+                localStorage.bc = bc
+                localStorage.fc = fc
+                load()
+            }
+
+        }
+        else {
+            document.write("seu Browser não suporta WebStorage")
+        }
+    </script>
+</body>
+</html>
